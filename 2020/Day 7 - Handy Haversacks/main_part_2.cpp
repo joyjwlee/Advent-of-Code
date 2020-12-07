@@ -3,7 +3,7 @@
 using namespace std;
 
 // set up input
-ifstream file("test.txt");
+ifstream file("input.txt");
 string line, temp, outside, inside, curr;
 
 // variables
@@ -12,21 +12,14 @@ map<string, bool> visited;
 int ans = 0, freq = 0, sum = 0;
 
 int dfs(string curr, int num) {
-    // edge case
-    if (hierarchy[curr].size() == 0)
-        return num;
-    // otherwise dfs
-    else {
-        sum = 0;
-        for (pair<string, int> p : hierarchy[curr]) {
-            cout << p.first << " ";
-            sum += dfs(p.first, p.second);
-        }
-        sum *= num;
-        sum += num;
-        cout << curr << " " << sum << " " << num << endl;
-        return sum;
+    int sum = 0;
+    // dfs the sub-baggages
+    for (pair<string, int> p : hierarchy[curr]) {
+        sum += dfs(p.first, p.second);
     }
+    sum *= num;
+    sum += num;
+    return sum;
 }
 
 int main(void) {
@@ -58,19 +51,12 @@ int main(void) {
         }
     }
 
-    // print answer
-    /*
-    for (auto itr = hierarchy.begin(); itr != hierarchy.end(); itr++) {
-        cout << itr->first << endl;
-        for (int i = 0; i < itr->second.size(); i++) {
-            cout << itr->second[i].first << " " << itr->second[i].second << "|| ";
-        }
-        cout << "\n\n";
-    }
-    */
+    // loop through and add to ans
     for (pair<string, int> p : hierarchy["shiny gold"]) {
         ans += dfs(p.first, p.second);
     }
+
+    // print and exit
     cout << ans;
     return 0;
 }
