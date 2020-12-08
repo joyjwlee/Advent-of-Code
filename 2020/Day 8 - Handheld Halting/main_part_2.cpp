@@ -5,7 +5,7 @@ using namespace std;
 // set up input
 ifstream file("input.txt");
 string line, command, curr = "";
-int ans = 0, val, idx = 0;
+int ans = 0, val, idx = 0, cnt;
 vector<pair<string, int>> commands;
 map<int, bool> visited;
 
@@ -21,18 +21,10 @@ void readInput() {
     }
 }
 
-int main(void) {
-    // read input
-    readInput();
-
-    // loop through
+void solve() {
+    idx = 0;
     curr = commands[0].first;
-    while (true) {
-        // break or mark as visited
-        if (visited[idx])
-            break;
-        visited[idx] = true;
-
+    while (idx != commands.size() - 1) {
         // do diff scenarios
         if (curr == "acc") {
             ans += commands[idx].second;
@@ -46,6 +38,67 @@ int main(void) {
         // update current string
         curr = commands[idx].first;
     }
+
+    // do last one as well
+    ans += commands[idx].second;
+}
+
+bool notLoopy() {
+    idx = 0;
+    curr = commands[0].first;
+    // loop using pidgeon hole
+    for (int i = 0; i < commands.size(); i++) {
+        // increment idx
+        if (curr == "jmp")
+            idx += commands[idx].second;
+        else
+            idx++;
+
+        // if end return true
+        if (idx == commands.size() - 1)
+            return true;
+
+        // update current string
+        curr = commands[idx].first;
+    }
+    return false;
+}
+
+void makeNonLoopy() {
+    for (int i = 0; i < commands.size(); i++) {
+        // if acc, continue
+        if (commands[i].first == "acc")
+            continue;
+        // otherwise flip the other two and do
+        else if (commands[i].first == "jmp") {
+            commands[i].first = "nop";
+            // if not loopy, break
+            if (notLoopy())
+                break;
+            // otherwise put it back
+            else
+                commands[i].first = "jmp";
+        } else if (commands[i].first == "nop") {
+            commands[i].first = "jmp";
+            // if not loopy, break
+            if (notLoopy())
+                break;
+            // otherwise put it back
+            else
+                commands[i].first = "nop";
+        }
+    }
+}
+
+int main(void) {
+    // read input
+    readInput();
+
+    // find where it is loopy and fix
+    makeNonLoopy();
+
+    // solve
+    solve();
 
     // print answer and exit
     cout << ans;
