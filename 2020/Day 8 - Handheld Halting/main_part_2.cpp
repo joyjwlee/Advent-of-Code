@@ -21,7 +21,11 @@ void readInput() {
     }
 }
 
-void solve() {
+int main(void) {
+    // read input
+    readInput();
+
+    // loop through
     curr = commands[0].first;
     while (true) {
         // break or mark as visited
@@ -42,14 +46,6 @@ void solve() {
         // update current string
         curr = commands[idx].first;
     }
-}
-
-int main(void) {
-    // read input
-    readInput();
-
-    // solve
-    solve();
 
     // print answer and exit
     cout << ans;
