@@ -5,7 +5,7 @@ using namespace std;
 // set up input
 ifstream file("input.txt");
 string line, command, curr = "";
-int ans = 0, val, idx = 0, cnt;
+int ans = 0, val, idx = 0;
 vector<pair<string, int>> commands;
 map<int, bool> visited;
 
@@ -40,27 +40,34 @@ void solve() {
     }
 
     // do last one as well
-    ans += commands[idx].second;
+    if (curr == "acc")
+        ans += commands[idx].second;
 }
 
 bool notLoopy() {
+    map<int, bool> visited;
     idx = 0;
     curr = commands[0].first;
-    // loop using pidgeon hole
-    for (int i = 0; i < commands.size(); i++) {
-        // increment idx
+    while (true) {
+        // if last, return true
+        if (idx == commands.size() - 1)
+            return true;
+
+        // break or mark as visited
+        if (visited[idx])
+            break;
+        visited[idx] = true;
+
+        // do diff scenarios
         if (curr == "jmp")
             idx += commands[idx].second;
         else
             idx++;
 
-        // if end return true
-        if (idx == commands.size() - 1)
-            return true;
-
-        // update current string
+        // update values
         curr = commands[idx].first;
     }
+    // otherwise we've looped around
     return false;
 }
 
@@ -74,18 +81,16 @@ void makeNonLoopy() {
             commands[i].first = "nop";
             // if not loopy, break
             if (notLoopy())
-                break;
+                return;
             // otherwise put it back
-            else
-                commands[i].first = "jmp";
+            commands[i].first = "jmp";
         } else if (commands[i].first == "nop") {
             commands[i].first = "jmp";
             // if not loopy, break
             if (notLoopy())
-                break;
+                return;
             // otherwise put it back
-            else
-                commands[i].first = "nop";
+            commands[i].first = "nop";
         }
     }
 }
