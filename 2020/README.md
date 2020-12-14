@@ -12,10 +12,10 @@ My C++ solutions to AoC 2020!
 | **[7](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%207%20-%20Handy%20Haversacks)**  | ** | **[8](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%208%20-%20Handheld%20Halting)**  | ** |
 | **[9](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%209%20-%20Encoding%20Error)**  | ** | **[10](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2010%20-%20Adapter%20Array)**  | ** |
 | **[11](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2011%20-%20Seating%20System)**  | ** | **[12](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2012%20-%20Rain%20Risk)**  | ** |
-| 13                 |    | 14 |  |
+| **[13](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2013%20-%20Shuttle%20Search)**  | *  | **[14](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2014%20-%20Docking%20Data)**  | ** |
 | 15                 |    | 16 |  |
 | 17                 |    | 18 |  |
 | 19                 |    | 20 |  |
 | 21                 |    | 22 |  |
 | 23                 |    | 24 |  |
-| 25                 |    | **TOT:** | **24** |
+| 25                 |    | **TOT:** | **27** |
