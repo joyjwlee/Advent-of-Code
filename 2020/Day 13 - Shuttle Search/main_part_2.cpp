@@ -3,7 +3,7 @@
 using namespace std;
 
 // set up input
-ifstream file("input.txt");
+ifstream file("test.txt");
 string line;
 vector<string> lines;
 long long eta, idx = 0, pos;
