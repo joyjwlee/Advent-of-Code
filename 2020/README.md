@@ -13,9 +13,9 @@ My C++ solutions to AoC 2020!
 | **[9](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%209%20-%20Encoding%20Error)**  | ** | **[10](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2010%20-%20Adapter%20Array)**  | ** |
 | **[11](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2011%20-%20Seating%20System)**  | ** | **[12](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2012%20-%20Rain%20Risk)**  | ** |
 | **[13](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2013%20-%20Shuttle%20Search)**  | *  | **[14](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2014%20-%20Docking%20Data)**  | ** |
-| **[15](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2015%20-%20Rambunctious%20Recitation)**  | ** | 16 |  |
+| **[15](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2015%20-%20Rambunctious%20Recitation)**  | ** | **[16](https://github.com/joyjwlee/Advent-of-Code/tree/main/2020/Day%2016%20-%20Ticket%20Translation)**  | *  |
 | 17                 |    | 18 |  |
 | 19                 |    | 20 |  |
 | 21                 |    | 22 |  |
 | 23                 |    | 24 |  |
-| 25                 |    | **TOT:** | **29** |
+| 25                 |    | **TOT:** | **30** |
