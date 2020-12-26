@@ -59,8 +59,10 @@ int main(void) {
     // read input
     readInput();
 
-    // solve, print answer, and return
+    // solve
     solve();
+
+    // print answer and return
     cout << ans;
     return 0;
 }
