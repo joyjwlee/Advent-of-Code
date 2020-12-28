@@ -8,7 +8,7 @@ string line;
 
 // variables
 vector<string> expressions;
-int ans = 0, n;
+int ans = 0, a, b;
 stack<int> nums;
 stack<char> ops;
 
@@ -18,64 +18,58 @@ void readInput() {
     }
 }
 
+void doOp() {
+    // get top 2 values
+    a = nums.top();
+    nums.pop();
+    b = nums.top();
+    nums.pop();
+
+    // do one of four operations
+    if (ops.top() == '*')
+        b *= a;
+    else if (ops.top() == '+')
+        b += a;
+    else if (ops.top() == '/')
+        b /= a;
+    else
+        b -= a;
+
+    // put back and remove operator
+    nums.push(b);
+    ops.pop();
+}
+
 int calculate(string s) {
     // loop through the expression
     for (char c : s) {
-        // if open parenthesis
+        // if open paren
         if (c == '(')
             ops.push(c);
-        // if empty
-        else if (nums.empty())
-            nums.push((int)(c - '0'));
-        // if just number, do operation
+        // if number
         else if ('0' <= c && c <= '9') {
-            // get last value
-            n = nums.top();
-            nums.pop();
-
-            // do one of four operations
-            if (ops.top() == '*')
-                n *= (int)(c - '0');
-            else if (ops.top() == '+')
-                n += (int)(c - '0');
-            else if (ops.top() == '/')
-                n /= (int)(c - '0');
-            else
-                n -= (int)(c - '0');
-
-            // put back and remove operator
-            nums.push(n);
-            ops.pop();
+            // if empty, add to stack
+            if (nums.empty())
+                nums.push((int)(c - '0'));
+            // otherwise add to stack and do operation
+            else {
+                nums.push((int)(c - '0'));
+                doOp();
+            }
         }
-        // if operator, add to ops
+        // if operator
         else if (c == '*' || c == '+' || c == '/' || c == '-')
             ops.push(c);
-        // if closing parenthesis
+        // if closing paren
         else if (c == ')') {
-            // repeat above until reach open
-            while (ops.top() != '(') {
-                // get last value
-                n = nums.top();
-                nums.pop();
-
-                // do one of four operations
-                if (ops.top() == '*')
-                    n *= (int)(c - '0');
-                else if (ops.top() == '+')
-                    n += (int)(c - '0');
-                else if (ops.top() == '/')
-                    n /= (int)(c - '0');
-                else
-                    n -= (int)(c - '0');
-
-                // put back and remove operator
-                nums.push(n);
-                ops.pop();
-            }
-            // remove open paren
+            // do until we hit open paren
+            while (ops.top() != '(')
+                doOp();
+            // then remove the paren
             ops.pop();
         }
     }
+    // return what's at the stack
     return nums.top();
 }
 
