@@ -11,7 +11,8 @@ map<int, bool> fields;
 int ans = 0, type = 0, a1, a2, b1, b2;
 size_t pos, pos1, pos2;
 string delim = ",", token, a, b;
-vector<int> myTickets, nearbyTickets;
+vector<int> temp;
+vector<vector<int>> tickets;
 
 void readInput() {
     while (getline(file, line)) {
@@ -47,36 +48,33 @@ void readInput() {
                 fields[i] = true;
         }
 
-        // if type is 1, get my ticket
-        if (type == 1) {
+        // if type is 1 or 2, get my ticket/nearby tickets
+        if (type == 1 || type == 2) {
+            // reset
+            temp.clear();
             // split by comma
             pos = 0;
             while ((pos = line.find(delim)) != -1) {
                 token = line.substr(0, pos);
-                myTickets.push_back(stoi(token));
+                temp.push_back(stoi(token));
                 line.erase(0, pos + delim.length());
             }
-            myTickets.push_back(stoi(line));
-        }
-
-        // if type is 2, get nearby tickets
-        if (type == 2) {
-            // split by comma
-            pos = 0;
-            while ((pos = line.find(delim)) != -1) {
-                token = line.substr(0, pos);
-                nearbyTickets.push_back(stoi(token));
-                line.erase(0, pos + delim.length());
-            }
-            nearbyTickets.push_back(stoi(line));
+            temp.push_back(stoi(line));
+            // add to tickets
+            tickets.push_back(temp);
         }
     }
 }
 
 void solve() {
-    for (int n : nearbyTickets)
-        if (!fields[n])
-            ans += n;
+    for (int i = 0; i < tickets.size(); i++) {
+        for (int j = 0; j < tickets[i].size(); j++) {
+            if (!fields[tickets[i][j]]) {
+                // remove this ticket... WIP
+                i--;
+            }
+        }
+    }
 }
 
 int main(void) {
